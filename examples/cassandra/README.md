@@ -9,7 +9,10 @@ stores the segment metadatak.
 ## Schema
 Below are the create statements for each:
 
-
+    CREATE KEYSPACE Druid
+      WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 3 };
+    
+    USE Druid; 
 
     CREATE TABLE index_storage ( key text, chunk text, value blob, PRIMARY KEY (key, chunk)) WITH COMPACT STORAGE;
 
@@ -19,7 +22,7 @@ Below are the create statements for each:
 ## Getting Started
 First create the schema above.  (I use a new keyspace called `druid`) 
 
-Then, add the following properties to your properties file to enable a Cassandra 
+Then, add the following properties to your properties file (`config/historical/runtime.properties`) to enable a Cassandra 
 backend.
 
     druid.storage.cassandra=true
